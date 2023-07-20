@@ -424,6 +424,12 @@ st.set_page_config(
         'Get Help': 'https://github.com/Lijiakuan/wzyx_data_anly/issues',
         'About': '关于本系统: **由李家宽制作**'
     })
+st.markdown("""
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style>
+""", unsafe_allow_html=True)
 # st.title("万众益心数据统计分析展示")
 st.image("b6.png", use_column_width=True)
 # 侧边栏
