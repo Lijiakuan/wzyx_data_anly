@@ -210,107 +210,10 @@ def hos_original_file(filename):
 # sys.exit()
 
 
-# 查询数据库中截止至该月末的医生与患者对应关系
-# def Doc_patientinfo(end_date):
-#     # 连接数据库
-#     conn = MySQLdb.connect(host='rm-2ze6pw5p3u910fqe8eo.mysql.rds.aliyuncs.com',
-#                            user='root', passwd='DuGbBq5@bM9yx_0921', db='wzyx_saas_admin', charset='utf8')
-#     cursor = conn.cursor()
-#     sql = f"""select *  from (select
-#                         pi.patient_no  as "患者入组编码",
-#                         pi.name        as "受试者姓名",
-#                         TIMESTAMPDIFF(YEAR, pi.birthday, CURRENT_DATE()) AS "年龄",
-#                         (case
-#                         when (pi.gender = 1) then "男"
-#                         when (pi.gender = 0) then "女"
-#                         end) as "性别",
-#                         pi.create_time as registdate,
-#                         di.imei as "血压计编号",
-#                         dc.name        as "医生姓名",
-#                         dc.phone       as "医生手机号",
-#                         dc.hospital_name as hospital_name
-#                         from ums_patient_info pi
-#                         left join device_info di on di.patient_no = pi.patient_no
-#                         left join doctor_certification dc on dc.doctor_no = pi.doctor_no
-#             ) _result
-#         where hospital_name like  '%医院%'
-#             AND  registdate  BETWEEN '2019-06-01' AND '{end_date}'
-#         order by "患者编码" desc;
-#     """
-#     cursor.execute(sql)
-#     result = cursor.fetchall()
-#     cursor.close()
-#     conn.close()
-#     time.sleep(5)
-
-#     if len(result) == 0:
-#         print('提示', '无查询结果!')
-#     else:
-#         df = pd.DataFrame(result, columns=[
-#             "患者入组编码", "受试者姓名", "年龄", "性别", "上线日期", "血压计编号", "医生姓名", '医生手机号', "中心名称"])
-#         df['血压计编号'] = df['血压计编号'].fillna(0)
-#         df['是否绑定血压计'] = np.where(
-#             df['血压计编号'] != 0, '是', '否')
-#         df = df[["医生姓名", "医生手机号", "受试者姓名", "性别", "年龄", "血压计编号",
-#                  "上线日期", "患者入组编码", "中心名称", '是否绑定血压计']]
-
-#         return df
-
-    # df.to_excel('doc_patient.xlsx', index=False)
-# result = Doc_patientinfo('2023-06-31')
-# result.to_excel('医生患者对应关系.xlsx', index=False)
-# sys.exit()
 
 
 # 按照项目生成医生患者的对应关系
 # 查询数据库中截止至该月末的医生与患者对应关系
-
-
-# def pre_Doc_patientinfo(end_date):
-#     # 连接数据库
-#     conn = MySQLdb.connect(host='rm-2ze6pw5p3u910fqe8eo.mysql.rds.aliyuncs.com',
-#                            user='root', passwd='DuGbBq5@bM9yx_0921', db='wzyx_saas_admin', charset='utf8')
-#     cursor = conn.cursor()
-#     sql = f"""select *  from (select
-#                         pi.patient_no  as "患者入组编码",
-#                         pi.name        as "受试者姓名",
-#                         TIMESTAMPDIFF(YEAR, pi.birthday, CURRENT_DATE()) AS "年龄",
-#                         (case
-#                         when (pi.gender = 1) then "男"
-#                         when (pi.gender = 0) then "女"
-#                         end) as "性别",
-#                         pi.create_time as registdate,
-#                         di.imei as "血压计编号",
-#                         dc.name        as "医生姓名",
-#                         dc.phone       as "医生手机号",
-#                         pm.project_name as project_name
-#                         from ums_patient_info pi
-#                         left join device_info di on di.patient_no = pi.patient_no
-#                         left join doctor_certification dc on dc.doctor_no = pi.doctor_no
-#                         left join patient_mgr_project pm on pm.id = pi.mgr_project_code
-#             ) _result
-#         where project_name like  '%医院%'
-#             AND  registdate  BETWEEN '2019-06-01' AND '{end_date}'
-#         order by "患者编码" desc;
-#     """
-#     cursor.execute(sql)
-#     result = cursor.fetchall()
-#     cursor.close()
-#     conn.close()
-#     time.sleep(5)
-
-#     if len(result) == 0:
-#         print('提示', '无查询结果!')
-#     else:
-#         df = pd.DataFrame(result, columns=[
-#             "患者入组编码", "受试者姓名", "年龄", "性别", "上线日期", "血压计编号", "医生姓名", "医生手机号", "中心名称"])
-#         df['血压计编号'] = df['血压计编号'].fillna(0)
-#         df['是否绑定血压计'] = np.where(
-#             df['血压计编号'] != 0, '是', '否')
-#         df = df[["医生姓名", "医生手机号", "受试者姓名", "性别", "年龄", "血压计编号",
-#                  "上线日期", "患者入组编码", "中心名称", '是否绑定血压计']]
-#     # df.to_excel('doc_patient.xlsx', index=False)
-#         return df
 
 # 生成月平均统计表
 
@@ -518,7 +421,7 @@ st.set_page_config(
     page_icon='🏢',
     layout="wide",
     menu_items={
-        'Get Help': 'https://github.com/',
+        'Get Help': 'https://github.com/Lijiakuan/wzyx_data_anly/issues',
         'About': '关于本系统: **由李家宽制作**'
     })
 # st.title("万众益心数据统计分析展示")
